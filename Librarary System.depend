@@ -1,0 +1,20 @@
+# depslib dependency file v1.0
+1737625194 source:f:\akram c++\librarary system\main.cpp
+	"Book.h"
+	"Screen.h"
+
+1737622984 source:f:\akram c++\librarary system\src\book.cpp
+	"Book.h"
+	<vector>
+
+1737631618 f:\akram c++\librarary system\include\book.h
+	<iostream>
+	<string>
+	<vector>
+
+1737459610 source:f:\akram c++\librarary system\src\screen.cpp
+	"Screen.h"
+
+1737630681 f:\akram c++\librarary system\include\screen.h
+	"Book.h"
+
