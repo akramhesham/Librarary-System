@@ -1,6 +1,7 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 #include "Book.h"
+#include <limits>
 class Screen
 {
  public:
@@ -33,11 +34,6 @@ class Screen
           int id;
           cout<<"\nEnter the id of book you want to search for\n";
           cin>>id;
- /*         if(Book::SearchBook(id)){
-            cout<<"\nThe book that has id: "<<id<<" is found\n";
-          }else{
-            cout<<"\nThe book that has id: "<<id<<" isn't found\n";
-          }*/
           if(Book::SearchBook(id)){
             cout<<"The book that has id "<<id<<" is found\n";
           }else{
@@ -87,38 +83,70 @@ class Screen
           Book::DisplayingBooks();
           break;
          }
-        default:
-            cout<<"\nInvalid entry choice enter a valid choice\n";
-            int choice1;
-            cin>>choice1;
+/*        default:
+          if(cin.fail()){
+          cin.clear();
+          cin.ignore();
+          cout<<"\nInvalid entry choice enter a valid choice\n";
+          int choice1;
+          cin>>choice1;
+          Choices(choice1);
+          }*/
+       }
+     }
+     static void validChoice1(int &choice1){
+       string str1;
+       bool flag=true;
+       getline(cin,str1);
+       for(char c:str1){
+            while(flag){
+                if(!isdigit(c)){
+                    flag=false;
+                }
+            }
+        if(flag==true&&!str1.empty()){
+            choice1=stoi(str1);
             Choices(choice1);
+            break;
+        }else{
+          cout<<"\nInvalid entry choice enter a number from 1 to 7\n";
+          validChoice1(choice1);
+        }
        }
      }
      static void Menu2(){
+       string str2;
        cout<<"1-Return to main menu\n";
        cout<<"2-End Program\n";
+       cout<<"Enter 1 or 2\n";
+       getline(cin,str2);
+       cout<<endl;
      }
      static void Start(){
        int choice1,choice2;
+       string str1,str2;
        bool finish=true;
        Welcome();
+       while(finish=true){
        Menu1();
-       while(finish){
-        cout<<"\nChoose what you want to do\n";
-        cin>>choice1;
-        cout<<endl;
-        Choices(choice1);
+       validChoice1(choice1);
         cout<<"\nDo you want to return to main menu or end the program\n";
         Menu2();
-        cin>>choice2;
+        for(char c:str2){
+            if(isdigit(c)){
+              choice2=stoi(str2);
+            }else{
+              cout<<"\nInvalid entry choice please enter 1 or 2\n";
+              Menu2();
+            }
+        }
         if(choice2==1){
             Start();
         }else if(choice2==2){
-            finish=false;
-            return;
+          finish=false;
         }else{
-            cout<<"\nInvalid entry choice\n";
-            Choices(choice2);
+              cout<<"\nInvalid entry choice please enter 1 or 2\n";
+              Menu2();
         }
        }
      }
