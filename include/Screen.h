@@ -118,7 +118,7 @@ class Screen
             return;
         }else{
             cout<<"\nInvalid entry choice\n";
-            Choices(choice1);
+            Choices(choice2);
         }
        }
      }

@@ -21,7 +21,7 @@ public:
         this->idFinal=id;
         this->title=title;
         this->author=author;
-        this->available=true;
+        this->available=available;
     }
     static void setId(int id1){
        id=id1;
@@ -50,7 +50,7 @@ public:
     static vector<Book>& getBookV(){
        return bookV;
     }
-    static Book AddNewBook(string title,string author){
+    static Book AddNewBook(string& title,string& author){
        id++;
        int idFinal=id;
        cout<<"\nEnter the Book's title:\n";
@@ -64,48 +64,51 @@ public:
        return book1;
     }
     static bool SearchBook(int id1){
-        for(auto& b:bookV){
-        if(b.getId()==id1){
-            return true;
-        }
+        for(int i=0;i<bookV.size();i++){
+            if(bookV[i].getId()==id1){
+                return true;
+            }
         }
           return false;
     }
     static void RemovingBooks(int id1){
-       if(SearchBook(id1)){
-        bookV.erase(bookV.begin()+id-1);
+       for(int i=0;i<bookV.size();i++){
+         if(bookV[i].getId()==id1){
+        bookV.erase(bookV.begin()+i);
         cout<<"\nThe book that has id: "<<id1<<" is successfully removed\n";
         return;
        }
+       }
         cout<<"\nCan't found this id\n";
     }
-    static Book updatingBooks(int id,string title,string author){
+    static void updatingBooks(int& idFinal,string& title,string& author){
        cout<<"\nEnter the id of the book you want to update\n";
-       cin>>id;
-      for(auto& b:bookV){
-      if(SearchBook(id)){
-       cout<<"\nEnter the Book's title: \n";
-       cin.ignore();
-       getline(cin,title);
-       cout<<"\nEnter the Book's author:\n";
-       getline(cin,author);
-       b.setTitle(title);
-       b.setAuthor(author);
-       Book b=Book(title,author);
-       return b;
+       cin>>idFinal;
+      for(auto& b : bookV){
+        if(SearchBook(id)){
+          cout<<"\nEnter the Book's title: \n";
+          cin.ignore();
+          getline(cin,title);
+          cout<<"\nEnter the Book's author:\n";
+          getline(cin,author);
+          b.setTitle(title);
+          b.setAuthor(author);
+          cout<<"\nThe book that has id "<<id<<" has been updated\n";
+          return;
       }
       }
+      cout<<"\nThe book isn't found\n";
     }
     static void BorrowingBooks(int id1){
       if(SearchBook(id1)){
         if(bookV[id1].available){
-            bookV[id1].available=false;
+            bookV[id1].available==false;
             cout<<"\nThe book that has id: "<<id1<<" is successfully borrowed\n";
             return;
         }else{
            cout<<"\nThis book is already borrowed\n";
            return;
-      }
+        }
       }
         cout<<"\nThis book isn't available\n";
         return;

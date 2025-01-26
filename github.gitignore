@@ -1,0 +1,11 @@
+# Ignore .exe files
+*.exe
+
+# Ignore object files
+*.o
+
+# Ignore layout and dependency files
+*.layout
+*.depend
+
+# Ignore Debug folder 
