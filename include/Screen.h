@@ -110,7 +110,8 @@ class Screen
           cin.ignore();*/
           cout<<"\nInvalid entry choice enter a valid number from 1 to 7\n";
           int choice1;
-          cin>>choice1;
+          //cin>>choice1;
+          validChoice1(choice1);
           Choices(choice1);
 
        }
@@ -129,9 +130,8 @@ class Screen
        Menu1();
        Choices(choice1);
        Menu2();
-        while(true){
        validChoice1(choice2);
-         bool check=true;
+        bool check=true;
         if(choice2==1){
             Start();
             break;
@@ -143,8 +143,6 @@ class Screen
           cout<<"\nInvalid entry choice please enter 1 or 2\n";
           validChoice1(choice2);
           check=false;
-
-        }
        }
        }
      }
