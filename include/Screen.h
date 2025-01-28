@@ -6,9 +6,10 @@ class Screen
 {
  public:
      static void Welcome(){
-       cout<<"**********************\n**********************\nWelcome to our Bank\n**********************\n**********************\n";
+       cout<<"**********************\n**********************\nWelcome to our Bank\n";
      }
      static void Menu1(){
+       cout<<"**********************\n**********************\n";
        cout<<"Main menu:\n";
        cout<<"1-Adding Books.\n";
        cout<<"2-Searching Books.\n";
@@ -34,12 +35,13 @@ class Screen
             choice1=stoi(str1);
             return choice1;
         }else{
+            cin.clear();
             cout<<"\nInvalid input choose a valid number\n";
         }
        }
      }
      static void Choices(int choice){
-       validChoice1(choice);
+
        switch(choice){
         case 1:
          {
@@ -53,12 +55,11 @@ class Screen
           cout<<"2-Searching Books:\n";
           int id;
           cout<<"\nEnter the id of book you want to search for\n";
-          cin>>id;
-          validChoice1(choice);
+          validChoice1(id);
           if(Book::SearchBook(id)){
             cout<<"The book that has id "<<id<<" is found\n";
           }else{
-            cout<<"The book that has id "<<id<<"isn't found\n";
+            cout<<"The book that has id "<<id<<" isn't found\n";
           }
           break;
          }
@@ -67,7 +68,7 @@ class Screen
           cout<<"3-Removing Books:\n";
           int id;
           cout<<"\nEnter the id of book you want to remove\n";
-          cin>>id;
+          validChoice1(id);
           Book::RemovingBooks(id);
           break;
          }
@@ -77,7 +78,6 @@ class Screen
           int id;
           string title,author;
           Book::updatingBooks(id,title,author);
-          cout<<"\nThe book that has id: "<<id<<" has been update it's title to "<<title<<" and author to "<<author<<endl;
           break;
          }
         case 5:
@@ -85,7 +85,7 @@ class Screen
           cout<<"5-Borrowing Books:\n";
           int id;
           cout<<"\nEnter the id of the book you want to borrow\n";
-          cin>>id;
+          validChoice1(id);
           Book::BorrowingBooks(id);
           break;
          }
@@ -94,7 +94,7 @@ class Screen
           cout<<"6-Returning Books:\n";
           int id;
           cout<<"\nEnter the id of the book you want to return\n";
-          cin>>id;
+          validChoice1(id);
           Book::ReturningBooks(id);
           break;
          }
@@ -105,21 +105,18 @@ class Screen
           break;
          }
         default:
-/*          if(cin.fail()){
-          cin.clear();
-          cin.ignore();*/
           cout<<"\nInvalid entry choice enter a valid number from 1 to 7\n";
           int choice1;
-          //cin>>choice1;
           validChoice1(choice1);
           Choices(choice1);
-
        }
      }
      static void Menu2(){
+       cout<<"**********************\n**********************\n";
        cout<<"1-Return to main menu\n";
        cout<<"2-End Program\n";
        cout<<"Enter 1 or 2\n";
+       cout<<"**********************\n**********************\n";
      }
      static void Start(){
        int choice1,choice2;
@@ -128,6 +125,7 @@ class Screen
        Welcome();
        while(finish=true){
        Menu1();
+       validChoice1(choice1);
        Choices(choice1);
        Menu2();
        validChoice1(choice2);
